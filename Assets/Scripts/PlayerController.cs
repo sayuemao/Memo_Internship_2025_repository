@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    private bool isGrounded;
+    public bool isGrounded;
     public Transform groundCheckPoint;
     public LayerMask whatIsGround;
 
@@ -57,11 +57,11 @@ public class PlayerController : MonoBehaviour
 
                 if (rb.velocity.x < 0)
                 {
-                    spriteRenderer.flipX = true;
+                    spriteRenderer.flipX = false;
                 }
                 else if (rb.velocity.x > 0)
                 {
-                    spriteRenderer.flipX = false;
+                    spriteRenderer.flipX = true;
                 }
             }
             else

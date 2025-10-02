@@ -1240,7 +1240,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 971dc44acc228334eb2a70905d88e93c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.40625, y: 1.40625}
@@ -1364,12 +1364,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  isGrounded: 0
   groundCheckPoint: {fileID: 972760673}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   moveSpeed: 8
-  jumpingForce: 8
+  jumpingForce: 7
   knockBackForce: 5
   knockBackLength: 0.25
   bounceForce: 5
