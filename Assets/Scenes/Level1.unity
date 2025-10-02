@@ -1369,10 +1369,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   moveSpeed: 8
-  jumpingForce: 12
+  jumpingForce: 8
   knockBackForce: 5
   knockBackLength: 0.25
-  bounceForce: 15
+  bounceForce: 5
   stopInput: 0
 --- !u!1 &519420028
 GameObject:
