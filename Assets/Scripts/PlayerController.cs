@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     public static PlayerController Instance { get; private set; }
 
     public Rigidbody2D rb;
@@ -35,6 +34,9 @@ public class PlayerController : MonoBehaviour
     public bool stopInput;
 
     public bool isAttack;
+    public GameObject shotArrowPosition;
+    public GameObject arrowPrefab;
+    public float arrowSpeed;
 
     private void Awake()
     {
@@ -123,6 +125,25 @@ public class PlayerController : MonoBehaviour
             isAttack = true;
             anim.SetTrigger("Attack");
         }
+    }
+
+    public void ShootArrow()
+    {
+        Vector3 arrowPos = shotArrowPosition.transform.position;
+
+        GameObject arrow = Instantiate(arrowPrefab, arrowPos, Quaternion.identity);
+
+        if (spriteRenderer.flipX)
+        {
+            arrow.transform.localScale = new Vector3(-1f, 1f, 1f);
+            arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(arrowSpeed, 0f);
+        }
+        else
+        {
+            arrow.transform.localScale = new Vector3(1f, 1f, 1f);
+            arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(-arrowSpeed, 0f);
+        }
+        //AudioManager.Instance.PlaySFX(9);
     }
     private void AnimUpdate()
     {

@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - ArrowPlatform
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2884088523
+    locked: 0
+  - name: Attack
+    uniqueID: 1560017007
     locked: 0
   - name: UI
     uniqueID: 1761896979
