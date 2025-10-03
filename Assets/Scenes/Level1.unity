@@ -392,6 +392,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1745690901}
     m_Modifications:
+    - target: {fileID: 2794711319578309606, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794711319578309606, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: 0.3551358
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794711319578309606, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[0].y
+      value: 1.1760743
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794711319578309606, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 0.31951085
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794711319578309606, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[1].y
+      value: 1.0275149
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794711319578309606, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[2].x
+      value: 0.3529381
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794711319578309606, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[2].y
+      value: 0.25475848
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794711319578309606, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[3].x
+      value: 0.34515178
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794711319578309606, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[3].y
+      value: -0.39693308
+      objectReference: {fileID: 0}
     - target: {fileID: 7548945594669579203, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -439,6 +475,10 @@ PrefabInstance:
     - target: {fileID: 8500402290250643365, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
       propertyPath: m_Name
       value: Platform_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196012775136475119, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_SurfaceArc
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -703,6 +743,26 @@ PrefabInstance:
     - target: {fileID: 8500402290250643365, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
       propertyPath: m_Name
       value: Platform_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8635398687506204594, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8635398687506204594, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: -0.3311819
+      objectReference: {fileID: 0}
+    - target: {fileID: 8635398687506204594, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[1].y
+      value: 1.0240366
+      objectReference: {fileID: 0}
+    - target: {fileID: 8635398687506204594, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[2].x
+      value: -0.36615807
+      objectReference: {fileID: 0}
+    - target: {fileID: 8635398687506204594, guid: e8ba50a6d9638734ab6011c369fceaba, type: 3}
+      propertyPath: m_Points.Array.data[2].y
+      value: 1.18454
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1275,7 +1335,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: db8e91c7366279f4db778152e4ab1ba1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1315,10 +1375,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 2.4
+  m_Material: {fileID: 6200000, guid: 3cccde31e6914e845aa510e8ffbc3a84, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1370,7 +1430,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   moveSpeed: 8
-  jumpingForce: 7
+  jumpingForce: 11
   knockBackForce: 5
   knockBackLength: 0.25
   bounceForce: 5

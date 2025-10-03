@@ -33,7 +33,7 @@ Transform:
   - {fileID: 309308596035545559}
   - {fileID: 6595648335293012800}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5014039516238539056
 SpriteRenderer:
@@ -225,7 +225,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: db8e91c7366279f4db778152e4ab1ba1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -340,7 +340,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: db8e91c7366279f4db778152e4ab1ba1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
