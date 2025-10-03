@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController Instance { get; private set; }
 
-
     public Rigidbody2D rb;
 
     public bool isGrounded;
@@ -19,7 +18,14 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public float moveSpeed = 7.5f;
+    private float currentSpeedDes;
+    private float currentSpeed;
+    public float groundAcceleration = 35f;
+    public float airAcceleration = 20f;
     public float jumpingForce = 10f;
+
+    public float groundStopFriction = 15f;  // 速度很小且无输入时快速归零的力度
+    public float minFrictionSpeed = 0.1f;   // 触发摩擦的最小速度绝对值
 
     public float knockBackForce, knockBackLength;
     private float knockBackCounter;
@@ -27,6 +33,9 @@ public class PlayerController : MonoBehaviour
     public float bounceForce;
 
     public bool stopInput;
+
+    public bool isAttack;
+
     private void Awake()
     {
         Instance = this;
@@ -45,41 +54,76 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, 0.2f, whatIsGround);
         if (/*!PauseMenu.Instance.isPaused &&*/ !stopInput)
         {
+            HandleMove();
+
             if (knockBackCounter <= 0)
             {
-                rb.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), rb.velocity.y);
-
-                if (Input.GetButtonDown("Jump")&& isGrounded)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpingForce);
-                    //AudioManager.Instance.PlaySFX(10);                
-                }
-
-                if (rb.velocity.x < 0)
-                {
-                    spriteRenderer.flipX = false;
-                }
-                else if (rb.velocity.x > 0)
-                {
-                    spriteRenderer.flipX = true;
-                }
+                HandleJump();
+                HandleAttack();
             }
             else
             {
                 knockBackCounter -= Time.deltaTime;
-                /*if (!spriteRenderer.flipX)
-                {
-                    rb.velocity = new Vector2(-knockBackForce, rb.velocity.y);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(knockBackForce, rb.velocity.y);
-                }个人感觉在KnockBack函数中修改更直观。*/
             }
         }
+
         AnimUpdate();
+
+    }
+    private void HandleMove()
+    {
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        currentSpeedDes = moveSpeed * horizontalInput;
+        currentSpeed = rb.velocity.x;
+        bool hasInput = Mathf.Abs(horizontalInput) > 0.01f;
+        float accel;
+        if (isGrounded)
+        {
+            accel = groundAcceleration;
+        }
+        else
+        {
+            accel = airAcceleration;
+        }
+        if (hasInput && Mathf.Sign(currentSpeedDes) != Mathf.Sign(currentSpeed))
+        {
+            accel *= 1.2f;
+        }
+        float newSpeed = Mathf.MoveTowards(currentSpeed, currentSpeedDes, accel * Time.deltaTime);
+        if (isGrounded && !hasInput && Mathf.Abs(newSpeed) < minFrictionSpeed)
+        {
+            newSpeed = Mathf.MoveTowards(newSpeed, 0f, groundStopFriction * Time.deltaTime);
+        }
+        rb.velocity = new Vector2(newSpeed, rb.velocity.y);
+
+        if (rb.velocity.x < 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (rb.velocity.x > 0)
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
+    private void HandleJump()
+    {
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpingForce);
+            //AudioManager.Instance.PlaySFX(10);                
+        }
+
+    }
+
+    private void HandleAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && !isAttack)
+        {
+            isAttack = true;
+            anim.SetTrigger("Attack");
+        }
+    }
     private void AnimUpdate()
     {
         anim.SetBool("isGrounded", isGrounded);
