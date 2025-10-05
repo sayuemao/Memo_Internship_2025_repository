@@ -1714,8 +1714,8 @@ MonoBehaviour:
   jumpingForce: 11
   groundStopFriction: 15
   minFrictionSpeed: 0.1
-  knockBackForceHorizontal: 15
-  knockBackForceVertical: 10
+  knockBackForceHorizontal: 10
+  knockBackForceVertical: 14
   knockBackLength: 0.25
   stopInput: 0
   isAttack: 0
@@ -1783,7 +1783,6 @@ MonoBehaviour:
   playerMaxHealth: 3
   playerCurrentHealth: 0
   invincibleLength: 3
-  capsuleCollider2d: {fileID: 506832852}
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 512
