@@ -32,6 +32,8 @@ public class Arrow : MonoBehaviour
 
     private float rayExtra = 0.05f;
 
+    public int arrowDamage = 1;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -80,8 +82,8 @@ public class Arrow : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 rb.isKinematic = true;
 
-                SR.sortingLayerName = "Map";
-                SR.sortingOrder = 0;
+                SR.sortingLayerName = "Attack";
+                SR.sortingOrder = 1;
                 
                 boxCollider2d.enabled = false;
 

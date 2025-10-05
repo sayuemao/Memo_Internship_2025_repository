@@ -26,10 +26,9 @@ public class PlayerController : MonoBehaviour
     public float groundStopFriction = 15f;  // 速度很小且无输入时快速归零的力度
     public float minFrictionSpeed = 0.1f;   // 触发摩擦的最小速度绝对值
 
-    public float knockBackForce, knockBackLength;
+    public float knockBackForceHorizontal,knockBackForceVertical, knockBackLength;
     private float knockBackCounter;
 
-    public float bounceForce;
 
     public bool stopInput;
 
@@ -54,6 +53,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, 0.2f, whatIsGround);
+        if(isGrounded)
+        {
+            knockBackCounter = 0;
+        }
         if (/*!PauseMenu.Instance.isPaused &&*/ !stopInput)
         {
             HandleMove();
@@ -98,13 +101,16 @@ public class PlayerController : MonoBehaviour
         }
         rb.velocity = new Vector2(newSpeed, rb.velocity.y);
 
-        if (rb.velocity.x < 0)
+        if (knockBackCounter <= 0)
         {
-            spriteRenderer.flipX = false;
-        }
-        else if (rb.velocity.x > 0)
-        {
-            spriteRenderer.flipX = true;
+            if (rb.velocity.x < 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (rb.velocity.x > 0)
+            {
+                spriteRenderer.flipX = true;
+            }
         }
     }
 
@@ -158,19 +164,15 @@ public class PlayerController : MonoBehaviour
         //rb.velocity = new Vector2(0f,knockBackForce);
         if (!spriteRenderer.flipX)
         {
-            rb.velocity = new Vector2(-knockBackForce, knockBackForce);
+            rb.velocity = new Vector2(knockBackForceHorizontal, knockBackForceVertical);
         }
         else
         {
-            rb.velocity = new Vector2(knockBackForce, knockBackForce);
+            rb.velocity = new Vector2(-knockBackForceHorizontal, knockBackForceVertical);
         }
 
         anim.SetTrigger("Hurt");
     }
 
-    public void Bounce()
-    {
-        rb.velocity = new Vector2(rb.velocity.x, bounceForce);
-        //AudioManager.Instance.PlaySFX(10);
-    }
+
 }

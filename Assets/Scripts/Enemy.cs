@@ -5,10 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float moveSpeed;
-    private bool isMovingRight = true;
+    public bool isMovingRight = false;
 
-    private GameObject leftPoint;
-    private GameObject rightPoint;
+    private GameObject leftGroundCheckPoint;
+    private GameObject rightGroundCheckPoint;
+
+    private GameObject leftWallCheckPoint;
+    private GameObject rightWallCheckPoint;
 
     private Rigidbody2D RB;
     private SpriteRenderer SR;
@@ -20,8 +23,11 @@ public class Enemy : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         SR = GetComponent<SpriteRenderer>();
 
-        leftPoint = transform.GetChild(0).gameObject;
-        rightPoint = transform.GetChild(1).gameObject;
+        leftGroundCheckPoint = transform.GetChild(0).gameObject;
+        rightGroundCheckPoint = transform.GetChild(1).gameObject;
+
+        leftWallCheckPoint = transform.GetChild(2).gameObject;
+        rightWallCheckPoint = transform.GetChild(3).gameObject;
     }
 
     
@@ -42,22 +48,33 @@ public class Enemy : MonoBehaviour
 
     private void CheckEdge()
     {
-        if(Physics2D.OverlapCircle(leftPoint.transform.position, 0.2f, groundLayer) == null)
+        Collider2D leftGroundCollider = Physics2D.OverlapCircle(leftGroundCheckPoint.transform.position, 0.2f, groundLayer);
+        Collider2D rightGroundCollider = Physics2D.OverlapCircle(rightGroundCheckPoint.transform.position, 0.2f, groundLayer);
+        Collider2D leftWallCollider = Physics2D.OverlapCircle(leftWallCheckPoint.transform.position, 0.2f, groundLayer);
+        Collider2D rightWallCollider = Physics2D.OverlapCircle(rightWallCheckPoint.transform.position, 0.2f, groundLayer);
+
+        // 两侧都无地（腾空/掉落中）时不翻转，避免抖动
+        //if (!leftGroundCollider && !rightGroundCollider) return;
+
+        if (isMovingRight)
         {
-            isMovingRight = true;
+            // 右侧遇墙或前方悬空 -> 向左
+            if (rightWallCollider || !rightGroundCollider)
+            {
+                isMovingRight = false;
+            }
         }
-        else if(Physics2D.OverlapCircle(rightPoint.transform.position, 0.2f, groundLayer) == null)
+        else
         {
-            isMovingRight = false;
+            // 左侧遇墙或前方悬空 -> 向右
+            if (leftWallCollider || !leftGroundCollider)
+            {
+                isMovingRight = true;
+            }
         }
+
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if(other.gameObject.layer == groundLayer)
-        {
-            isMovingRight = !isMovingRight;
-        }
-    }
+    
 
 }
