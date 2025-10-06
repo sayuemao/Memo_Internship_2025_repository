@@ -17,6 +17,13 @@ public class PlayerHealthController : MonoBehaviour
     private SpriteRenderer SR;
     public LayerMask whatIsEnemy;
 
+    public float startFlickerTime;  // 开始闪烁的时间点，是剩余的时间
+    public float flickerInterval = 0.5f; // 初始闪烁间隔时间
+    private float currentFlickerTime;
+
+    private float nextFlickerTime; // 下次闪烁的时间点
+
+
     private bool isadd;
     private void Awake()
     {
@@ -30,6 +37,9 @@ public class PlayerHealthController : MonoBehaviour
         SR = GetComponent<SpriteRenderer>();
         playerCurrentHealth = playerMaxHealth;
         invincibleCounter = -1f;
+        startFlickerTime = invincibleLength;
+        currentFlickerTime = 0;
+        nextFlickerTime = flickerInterval + Time.time;
     }
 
     
@@ -44,8 +54,15 @@ public class PlayerHealthController : MonoBehaviour
                 boxCollider2d.excludeLayers += whatIsEnemy;
                 isadd = true;
             }
-            SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, 0.75f);
-
+            //闪烁效果
+            currentFlickerTime += Time.deltaTime;
+            float remainingFlickerTime = startFlickerTime - currentFlickerTime;
+            flickerInterval = 0.05f + (remainingFlickerTime / startFlickerTime) * 0.4f;
+            if (Time.time >= nextFlickerTime)
+            {
+                SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, (SR.color.a == 1f) ? 0.75f : 1f); // 切换透明度实现闪烁
+                nextFlickerTime = Time.time + flickerInterval;
+            }
         }
         else
         {
@@ -56,6 +73,7 @@ public class PlayerHealthController : MonoBehaviour
                 isadd = false;
             }
             SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, 1f);
+            currentFlickerTime = 0f;
         }
     }
 
@@ -66,6 +84,8 @@ public class PlayerHealthController : MonoBehaviour
             invincibleCounter = invincibleLength;
 
             playerCurrentHealth -= damage;
+
+            GameManager.Instance.UpdateHealthDisplay(playerCurrentHealth);
 
             PlayerController.Instance.KnockBack();
 

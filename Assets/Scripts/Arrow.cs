@@ -112,7 +112,7 @@ public class Arrow : MonoBehaviour
         }
 
         /*当剩余时间小于等于设定的开始闪烁时间时，开始计算闪烁间隔,闪烁间隔会随着剩余时间减少而缩短，公式为0.1f + (remainingTime / startFlickerTime) * 0.4f，确保即使在最后时刻也有基本的闪烁间隔
-        通过启用 / 禁用物体的Renderer组件来实现闪烁效果*/
+        */
         if ((shouldBePlatform && staycounter < startFlickerTime)||(deadcounter<startFlickerTime))
         {
             currentFlickerTime += Time.deltaTime;
