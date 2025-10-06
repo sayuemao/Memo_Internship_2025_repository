@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheckPoint;
     public LayerMask whatIsGround;
 
-
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+    private BoxCollider2D boxCollider2D;
 
     public float moveSpeed = 7.5f;
     private float currentSpeedDes;
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
         if(isGrounded)
         {
             knockBackCounter = 0;
+            if(!boxCollider2D.enabled) boxCollider2D.enabled = true;
         }
         if (/*!PauseMenu.Instance.isPaused &&*/ !stopInput)
         {
@@ -169,7 +171,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(-knockBackForceHorizontal, knockBackForceVertical);
-        }
+        }      
 
         anim.SetTrigger("Hurt");
     }

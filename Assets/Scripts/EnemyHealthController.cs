@@ -71,6 +71,7 @@ public class EnemyHealthController : MonoBehaviour
 
     public void DieFinal()
     {
+        GameManager.Instance.enemycount--;
         Destroy(gameObject);
     }
 }

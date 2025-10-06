@@ -8,11 +8,22 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public GameUIPanel gameUIPanel;
+
+    public GameObject winPanel;
+    public GameObject losePanel;
     public GameObject pauseMenu;
+
+    public int enemycount;
 
     public bool isGamePaused = false;
 
+    public bool isPlayerWin = false;
+
     public bool playerDead = false;
+
+    public string backSceneName = "MainMenu";
+
+    public string nextLevelName;
 
     private void Awake()
     {
@@ -21,12 +32,17 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameUIPanel = FindAnyObjectByType<GameUIPanel>();
+        enemycount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(!isPlayerWin && enemycount<=0)
+        {
+            isPlayerWin = true;
+            PlayerWin();
+        }
     }
 
     public void UpdateHealthDisplay(int currentHealth)
@@ -57,13 +73,40 @@ public class GameManager : MonoBehaviour
             gameUIPanel.ChangePauseButtonImage();
         }
     }
+
+    public void RestartGame()
+    {
+        if (isGamePaused)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    public void NextLevel()
+    {
+        if (isGamePaused)
+        {
+            SceneManager.LoadScene(nextLevelName);
+        }
+    }
     public void EndGame()
     {
-
+        SceneManager.LoadScene(backSceneName);
     }
 
     public void PlayerDie()
     {
+        isPlayerWin = false;
+        isGamePaused = true;
+        losePanel.SetActive(true);
+        PlayerController.Instance.stopInput = true;
+    }
 
+    public void PlayerWin()
+    {
+        isPlayerWin = true;
+        isGamePaused = true;
+        winPanel.SetActive(true);
+        PlayerController.Instance.stopInput = true;
     }
 }

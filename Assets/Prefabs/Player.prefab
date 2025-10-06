@@ -265,8 +265,8 @@ MonoBehaviour:
   jumpingForce: 11
   groundStopFriction: 15
   minFrictionSpeed: 0.1
-  knockBackForceHorizontal: 10
-  knockBackForceVertical: 14
+  knockBackForceHorizontal: 8
+  knockBackForceVertical: 12
   knockBackLength: 0.25
   stopInput: 0
   isAttack: 0

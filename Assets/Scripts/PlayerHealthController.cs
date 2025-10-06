@@ -15,7 +15,7 @@ public class PlayerHealthController : MonoBehaviour
     private BoxCollider2D boxCollider2d;
     private CapsuleCollider2D capsuleCollider2d;
     private SpriteRenderer SR;
-    public LayerMask whatIsEnemy;
+    
 
     public float startFlickerTime;  // 开始闪烁的时间点，是剩余的时间
     public float flickerInterval = 0.5f; // 初始闪烁间隔时间
@@ -79,6 +79,8 @@ public class PlayerHealthController : MonoBehaviour
             invincibleCounter = invincibleLength;
 
             playerCurrentHealth -= damage;
+
+            boxCollider2d.enabled = false;
 
             GameManager.Instance.UpdateHealthDisplay(playerCurrentHealth);
 
