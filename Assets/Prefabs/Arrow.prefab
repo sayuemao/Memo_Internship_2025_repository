@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7939217976853466375}
   - component: {fileID: 2193431637572150435}
   - component: {fileID: 4030939236587139236}
+  - component: {fileID: 1436109107332292076}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   - {fileID: 7225828949266204664}
   - {fileID: 5023643841600673682}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4727374754219945153
 SpriteRenderer:
@@ -184,6 +185,20 @@ MonoBehaviour:
   flickerInterval: 0.5
   deadTime: 15
   arrowDamage: 1
+--- !u!114 &1436109107332292076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3410225283244503290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3d2729a8ce7ec4b92fd70e89de97fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounds: {fileID: 0}
+  margin: 0
 --- !u!1 &7315992221318267836
 GameObject:
   m_ObjectHideFlags: 0
