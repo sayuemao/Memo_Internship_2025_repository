@@ -23,8 +23,6 @@ public class PlayerHealthController : MonoBehaviour
 
     private float nextFlickerTime; // 下次闪烁的时间点
 
-
-    private bool isadd;
     private void Awake()
     {
         Instance = this;
@@ -45,35 +43,32 @@ public class PlayerHealthController : MonoBehaviour
     
     void Update()
     {
-        invincibleCounter = Mathf.Max(-100f, invincibleCounter -= Time.deltaTime);
-        if (invincibleCounter > 0)//无敌中
+        if (playerCurrentHealth > 0)
         {
-            capsuleCollider2d.enabled = false;
-            if (!isadd)
+            invincibleCounter = Mathf.Max(-100f, invincibleCounter -= Time.deltaTime);
+            if (invincibleCounter > 0)//无敌中
             {
-                boxCollider2d.excludeLayers += whatIsEnemy;
-                isadd = true;
+                capsuleCollider2d.enabled = false;
+                //闪烁效果
+                currentFlickerTime += Time.deltaTime;
+                float remainingFlickerTime = startFlickerTime - currentFlickerTime;
+                flickerInterval = 0.05f + (remainingFlickerTime / startFlickerTime) * 0.4f;
+                if (Time.time >= nextFlickerTime)
+                {
+                    SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, (SR.color.a == 0.9f) ? 0.75f : 0.9f); // 切换透明度实现闪烁
+                    nextFlickerTime = Time.time + flickerInterval;
+                }
             }
-            //闪烁效果
-            currentFlickerTime += Time.deltaTime;
-            float remainingFlickerTime = startFlickerTime - currentFlickerTime;
-            flickerInterval = 0.05f + (remainingFlickerTime / startFlickerTime) * 0.4f;
-            if (Time.time >= nextFlickerTime)
+            else
             {
-                SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, (SR.color.a == 1f) ? 0.75f : 1f); // 切换透明度实现闪烁
-                nextFlickerTime = Time.time + flickerInterval;
+                capsuleCollider2d.enabled = true;
+                SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, 1f);
+                currentFlickerTime = 0f;
             }
         }
         else
         {
-            capsuleCollider2d.enabled = true;
-            if (isadd)
-            {             
-                boxCollider2d.excludeLayers -= whatIsEnemy;
-                isadd = false;
-            }
-            SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, 1f);
-            currentFlickerTime = 0f;
+            SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, 0.75f);
         }
     }
 
@@ -98,6 +93,12 @@ public class PlayerHealthController : MonoBehaviour
 
     public void PlayerDie()
     {
+        PlayerController.Instance.stopInput = true;
+        boxCollider2d.enabled = false;
+        capsuleCollider2d.enabled = false;
+        this.GetComponent<WrapObject>().enabled = false;
+        Destroy(this.gameObject, 5f);
 
+        GameManager.Instance.PlayerDie();
     }
 }

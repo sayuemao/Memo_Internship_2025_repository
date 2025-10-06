@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public bool isGamePaused = false;
 
+    public bool playerDead = false;
+
     private void Awake()
     {
         Instance = this;
@@ -60,5 +62,8 @@ public class GameManager : MonoBehaviour
 
     }
 
-    
+    public void PlayerDie()
+    {
+
+    }
 }
