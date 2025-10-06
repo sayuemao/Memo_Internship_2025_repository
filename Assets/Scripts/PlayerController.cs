@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
     private SpriteRenderer spriteRenderer;
-    private BoxCollider2D boxCollider2D;
+    public CapsuleCollider2D capsuleCollider2D;
 
     public float moveSpeed = 7.5f;
     private float currentSpeedDes;
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
+        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         if(isGrounded)
         {
             knockBackCounter = 0;
-            if(!boxCollider2D.enabled) boxCollider2D.enabled = true;
+            if(!capsuleCollider2D.enabled) capsuleCollider2D.enabled = true;
         }
         if (/*!PauseMenu.Instance.isPaused &&*/ !stopInput)
         {

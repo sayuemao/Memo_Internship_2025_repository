@@ -12,8 +12,8 @@ public class PlayerHealthController : MonoBehaviour
     public float invincibleLength;
     private float invincibleCounter;
     
-    private BoxCollider2D boxCollider2d;
-    private CapsuleCollider2D capsuleCollider2d;
+    public CapsuleCollider2D  capsuleCollider2d;
+    public CapsuleCollider2D capsuleCollider2dTrigger;
     private SpriteRenderer SR;
     
 
@@ -30,8 +30,6 @@ public class PlayerHealthController : MonoBehaviour
 
     void Start()
     {
-        boxCollider2d = GetComponent<BoxCollider2D>();
-        capsuleCollider2d = GetComponent<CapsuleCollider2D>();
         SR = GetComponent<SpriteRenderer>();
         playerCurrentHealth = playerMaxHealth;
         invincibleCounter = -1f;
@@ -48,7 +46,7 @@ public class PlayerHealthController : MonoBehaviour
             invincibleCounter = Mathf.Max(-100f, invincibleCounter -= Time.deltaTime);
             if (invincibleCounter > 0)//无敌中
             {
-                capsuleCollider2d.enabled = false;
+                capsuleCollider2dTrigger.enabled = false;
                 //闪烁效果
                 currentFlickerTime += Time.deltaTime;
                 float remainingFlickerTime = startFlickerTime - currentFlickerTime;
@@ -61,7 +59,7 @@ public class PlayerHealthController : MonoBehaviour
             }
             else
             {
-                capsuleCollider2d.enabled = true;
+                capsuleCollider2dTrigger.enabled = true;
                 SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, 1f);
                 currentFlickerTime = 0f;
             }
@@ -80,7 +78,7 @@ public class PlayerHealthController : MonoBehaviour
 
             playerCurrentHealth -= damage;
 
-            boxCollider2d.enabled = false;
+            capsuleCollider2d.enabled = false;
 
             GameManager.Instance.UpdateHealthDisplay(playerCurrentHealth);
 
@@ -96,8 +94,8 @@ public class PlayerHealthController : MonoBehaviour
     public void PlayerDie()
     {
         PlayerController.Instance.stopInput = true;
-        boxCollider2d.enabled = false;
         capsuleCollider2d.enabled = false;
+        capsuleCollider2dTrigger.enabled = false;
         this.GetComponent<WrapObject>().enabled = false;
         Destroy(this.gameObject, 5f);
 
