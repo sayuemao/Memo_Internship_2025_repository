@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     public CapsuleCollider2D capsuleCollider2D;
+    public CapsuleCollider2D capsuleCollider2DTrigger;
+    public BoxCollider2D boxCollider2D;
 
     public float moveSpeed = 7.5f;
     private float currentSpeedDes;
@@ -47,17 +49,21 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        //capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, 0.2f, whatIsGround);
-        if(isGrounded)
+        if (isGrounded)
         {
             knockBackCounter = 0;
-            if(!capsuleCollider2D.enabled) capsuleCollider2D.enabled = true;
+            if (!capsuleCollider2D.enabled /*|| !boxCollider2D.enabled*/)
+            {
+                capsuleCollider2D.enabled = true;
+                //boxCollider2D.excludeLayers &= ~ PlayerHealthController.Instance.groundlayer.value;
+            }
         }
         if (/*!PauseMenu.Instance.isPaused &&*/ !stopInput)
         {
@@ -75,6 +81,9 @@ public class PlayerController : MonoBehaviour
         }
 
         AnimUpdate();
+
+        //capsuleCollider2D.size = capsuleCollider2DTrigger.size;
+        //capsuleCollider2D.offset = capsuleCollider2DTrigger.offset;
 
     }
     private void HandleMove()

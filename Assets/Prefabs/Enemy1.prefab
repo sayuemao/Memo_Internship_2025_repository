@@ -200,7 +200,7 @@ MonoBehaviour:
   isMovingRight: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
 --- !u!50 &5379508073749169264
 Rigidbody2D:
   serializedVersion: 4

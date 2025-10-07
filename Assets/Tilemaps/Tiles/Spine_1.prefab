@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3443838206060864850}
   - component: {fileID: 255920045447879708}
   - component: {fileID: 2373048271048380294}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spine_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 4501048594042268861}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &255920045447879708
 SpriteRenderer:
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 4501048594042268861}
   - component: {fileID: 7648657565605620759}
   - component: {fileID: 2271996987895630512}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpikeArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}

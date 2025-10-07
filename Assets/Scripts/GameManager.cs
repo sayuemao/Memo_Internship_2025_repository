@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject losePanel;
     public GameObject pauseMenu;
 
-    public int enemycount;
+    public int enemycount = 0;
 
     public bool isGamePaused = false;
 
@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameUIPanel = FindAnyObjectByType<GameUIPanel>();
-        enemycount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
+        enemycount += FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
+        enemycount += FindObjectsByType<Enemy2>(FindObjectsSortMode.None).Length;
     }
 
     // Update is called once per frame

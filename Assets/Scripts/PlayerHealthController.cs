@@ -14,8 +14,10 @@ public class PlayerHealthController : MonoBehaviour
     
     public CapsuleCollider2D  capsuleCollider2d;
     public CapsuleCollider2D capsuleCollider2dTrigger;
+    public BoxCollider2D BoxCollider2D;
     private SpriteRenderer SR;
-    
+
+    public LayerMask groundlayer;
 
     public float startFlickerTime;  // 开始闪烁的时间点，是剩余的时间
     public float flickerInterval = 0.5f; // 初始闪烁间隔时间
@@ -79,6 +81,7 @@ public class PlayerHealthController : MonoBehaviour
             playerCurrentHealth -= damage;
 
             capsuleCollider2d.enabled = false;
+            //BoxCollider2D.excludeLayers |= groundlayer.value; // 使玩家的BoxCollider2D忽略地面层
 
             GameManager.Instance.UpdateHealthDisplay(playerCurrentHealth);
 
@@ -95,6 +98,7 @@ public class PlayerHealthController : MonoBehaviour
     {
         PlayerController.Instance.stopInput = true;
         capsuleCollider2d.enabled = false;
+        //BoxCollider2D.excludeLayers |= groundlayer.value; // 使玩家的BoxCollider2D忽略地面层
         capsuleCollider2dTrigger.enabled = false;
         this.GetComponent<WrapObject>().enabled = false;
         Destroy(this.gameObject, 5f);

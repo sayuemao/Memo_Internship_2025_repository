@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
         Collider2D rightWallCollider = Physics2D.OverlapCircle(rightWallCheckPoint.transform.position, 0.2f, groundLayer);
 
         // 两侧都无地（腾空/掉落中）时不翻转，避免抖动
-        //if (!leftGroundCollider && !rightGroundCollider) return;
+        if (!leftGroundCollider && !rightGroundCollider) return;
 
         if (isMovingRight)
         {

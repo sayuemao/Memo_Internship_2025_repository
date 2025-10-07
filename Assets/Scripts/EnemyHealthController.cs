@@ -66,7 +66,8 @@ public class EnemyHealthController : MonoBehaviour
         //rb.bodyType = RigidbodyType2D.Kinematic;
         rb.gravityScale = 2.5f;
         this.GetComponent<WrapObject>().enabled = false;
-        this.GetComponent<Enemy>().enabled = false;
+        if(this.GetComponent<Enemy>()) this.GetComponent<Enemy>().enabled = false;
+        else if(this.GetComponent<Enemy2>()) this.GetComponent<Enemy2>().enabled = false;
     }
 
     public void DieFinal()

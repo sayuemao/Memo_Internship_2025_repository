@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193436908239569802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.023, z: 0}
+  m_LocalPosition: {x: 0, y: -0.037, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78,7 +78,8 @@ GameObject:
   - component: {fileID: 2988316598954382213}
   - component: {fileID: 3502727341519140666}
   - component: {fileID: 7658717632387687180}
-  - component: {fileID: 7815164847592122043}
+  - component: {fileID: 2736693813142729982}
+  - component: {fileID: 6295930532215758694}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -258,8 +259,10 @@ MonoBehaviour:
   groundCheckPoint: {fileID: 6013133129327360107}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 192
-  capsuleCollider2D: {fileID: 7815164847592122043}
+    m_Bits: 1216
+  capsuleCollider2D: {fileID: 2736693813142729982}
+  capsuleCollider2DTrigger: {fileID: 3137173792442878538}
+  boxCollider2D: {fileID: 6295930532215758694}
   moveSpeed: 8
   groundAcceleration: 35
   airAcceleration: 20
@@ -289,8 +292,12 @@ MonoBehaviour:
   playerMaxHealth: 3
   playerCurrentHealth: 0
   invincibleLength: 3
-  capsuleCollider2d: {fileID: 7815164847592122043}
+  capsuleCollider2d: {fileID: 2736693813142729982}
   capsuleCollider2dTrigger: {fileID: 3137173792442878538}
+  BoxCollider2D: {fileID: 6295930532215758694}
+  groundlayer:
+    serializedVersion: 2
+    m_Bits: 1088
   startFlickerTime: 0
   flickerInterval: 0.1
 --- !u!114 &7658717632387687180
@@ -307,7 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounds: {fileID: 0}
   margin: 0
---- !u!70 &7815164847592122043
+--- !u!70 &2736693813142729982
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -317,7 +324,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 3cccde31e6914e845aa510e8ffbc3a84, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -341,6 +348,52 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.001054764, y: 0.661355}
-  m_Size: {x: 0.7147255, y: 1.229888}
-  m_Direction: 0
+  m_Offset: {x: -0.011365477, y: 0.22763732}
+  m_Size: {x: 0.6294732, y: 0.2769995}
+  m_Direction: 1
+--- !u!61 &6295930532215758694
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6293757934609465334}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.0113658905, y: 1.1145698}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.46129656, y: 0}
+    oldSize: {x: 1.40625, y: 1.40625}
+    newSize: {x: 1.40625, y: 1.40625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.54457855, y: 0.37961555}
+  m_EdgeRadius: 0
