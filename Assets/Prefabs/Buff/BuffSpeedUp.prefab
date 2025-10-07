@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8196306054684708343}
   - component: {fileID: 1614623509790140239}
   - component: {fileID: 1961728903323730874}
+  - component: {fileID: 2437628193118701831}
+  - component: {fileID: 7829337872373935573}
   m_Layer: 0
   m_Name: BuffSpeedUp
   m_TagString: Untagged
@@ -173,3 +175,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffType: 1
+--- !u!114 &2437628193118701831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7783921557030899593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477e222a26304a64f96d739e830bdb71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startFlickerTime: 3.5
+  flickerInterval: 0.2
+  deadTime: 7
+--- !u!114 &7829337872373935573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7783921557030899593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3d2729a8ce7ec4b92fd70e89de97fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounds: {fileID: 0}
+  margin: 0

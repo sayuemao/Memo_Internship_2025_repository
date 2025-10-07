@@ -80,7 +80,7 @@ public class GameUIPanel : MonoBehaviour
 
     public void UpdateScoreDisplay(int currentScore)
     {
-        score.text = currentScore.ToString();
+        if(score.IsActive()) score.text = currentScore.ToString();
     }
 
     public void UpdateEndScoreDisplay()

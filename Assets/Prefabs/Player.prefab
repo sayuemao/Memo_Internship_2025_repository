@@ -272,6 +272,8 @@ MonoBehaviour:
   knockBackForceHorizontal: 8
   knockBackForceVertical: 13
   knockBackLength: 0.25
+  canFly: 0
+  flyUpSpeed: 3
   stopInput: 0
   isAttack: 0
   shotArrowPosition: {fileID: 4517881412693372255}
@@ -292,6 +294,7 @@ MonoBehaviour:
   playerMaxHealth: 3
   playerCurrentHealth: 0
   invincibleLength: 3
+  isBuffInvincible: 0
   capsuleCollider2d: {fileID: 2736693813142729982}
   capsuleCollider2dTrigger: {fileID: 3137173792442878538}
   BoxCollider2D: {fileID: 6295930532215758694}

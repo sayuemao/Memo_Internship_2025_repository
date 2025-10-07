@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6487972762346038049}
   - component: {fileID: 3197708103554349633}
   - component: {fileID: 4894402033194744367}
+  - component: {fileID: 3000875150700465370}
+  - component: {fileID: 647277952699702130}
   m_Layer: 0
   m_Name: BuffHealFly
   m_TagString: Untagged
@@ -173,3 +175,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffType: 3
+--- !u!114 &3000875150700465370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8756300014468794043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477e222a26304a64f96d739e830bdb71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startFlickerTime: 3.5
+  flickerInterval: 0.2
+  deadTime: 7
+--- !u!114 &647277952699702130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8756300014468794043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3d2729a8ce7ec4b92fd70e89de97fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounds: {fileID: 0}
+  margin: 0

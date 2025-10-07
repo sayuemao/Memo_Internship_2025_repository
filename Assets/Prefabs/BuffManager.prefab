@@ -45,6 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoints: []
+  buffPrefabs:
+  - {fileID: 8756300014468794043, guid: 442f6d2bc28e8d64fbbb7e2d0a82e486, type: 3}
+  - {fileID: 4248889865444125261, guid: f89ff9b6c5d5cb842aeaedae80d17e97, type: 3}
+  - {fileID: 48271279759271810, guid: 04a7cf5ba466e4341a7b70f28f131d5c, type: 3}
+  - {fileID: 7783921557030899593, guid: 8f494f5fb817ab94f91513d6e5577e04, type: 3}
   speedUpSprite: {fileID: 109871695347660471, guid: 3be4ba0a38a56e8468783c33b8753acc, type: 3}
   speedUpAmount: 3
   speedUpDuration: 10
@@ -56,6 +61,7 @@ MonoBehaviour:
   healUpDuration: 2
   noneSprite: {fileID: -2070804797755260815, guid: 5b85bd47d7d7dfa4f9b955d1c07e907c, type: 3}
   spawnInterval: 5
+  spawnTimer: 0
   buffDuration: 10
   buffTimer: 0
   currentBuff: 0

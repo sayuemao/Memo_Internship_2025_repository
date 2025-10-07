@@ -6,8 +6,11 @@ public class BuffManager : MonoBehaviour
 {
     public static BuffManager Instance { get; private set; }
 
-    public Transform[] spawnPoints;
+    public Transform[] spawnBuffPoints;
     public GameObject[] buffPrefabs;
+
+    public Transform[] spawnCoinPoints;
+    public GameObject[] coinPrefabs;
 
     public Sprite speedUpSprite;
     public float speedUpAmount = 3f;
@@ -24,8 +27,11 @@ public class BuffManager : MonoBehaviour
     
     public Sprite noneSprite;
 
-    public float spawnInterval = 5f;
-    public float spawnTimer = 0f;
+    public float spawnBuffInterval = 5f;
+    public float spawnBuffTimer = 0f;
+
+    public float spawnCoinInterval = 3f;
+    public float spawnCoinTimer = 0f;
 
     public float buffDuration = 10f;
     public float buffTimer = 0f;
@@ -45,15 +51,37 @@ public class BuffManager : MonoBehaviour
     }
     void Start()
     {
-        
+        currentBuff = BuffType.None;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.Instance.isGamePaused || GameManager.Instance.playerDead || GameManager.Instance.isPlayerWin)
+        {           
+            return;
+        }
+        spawnBuffTimer += Time.deltaTime;
+        if (spawnBuffTimer > spawnBuffInterval)
+        {
+            spawnBuffTimer = 0f;
+            int randomIndex = Random.Range(0, spawnBuffPoints.Length);
+            int randomBuffIndex = Random.Range(0, buffPrefabs.Length);
+            Instantiate(buffPrefabs[randomBuffIndex], spawnBuffPoints[randomIndex].position, spawnBuffPoints[randomIndex].rotation);
+            AudioManager.Instance.PlaySFX(10);
+        }
 
+        spawnCoinTimer += Time.deltaTime;
+        if (spawnCoinTimer > spawnCoinInterval)
+        {
+            spawnCoinTimer = 0f;
+            int randomIndex = Random.Range(0, spawnCoinPoints.Length);
+            int randomBuffIndex = Random.Range(0, coinPrefabs.Length);
+            Instantiate(coinPrefabs[randomBuffIndex], spawnCoinPoints[randomIndex].position, spawnCoinPoints[randomIndex].rotation);
+            AudioManager.Instance.PlaySFX(10);
+        }
 
-        switch(currentBuff)
+        switch (currentBuff)
         {
             case BuffType.None:
                 buffTimer = 0f;

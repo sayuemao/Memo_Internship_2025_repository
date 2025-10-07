@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6754bedd303650149aebd74e11d7f39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallTime: 2.5
+  fallTime: 1.5
   resetTime: 5
   isFalling: 0
   rock: {fileID: 0}

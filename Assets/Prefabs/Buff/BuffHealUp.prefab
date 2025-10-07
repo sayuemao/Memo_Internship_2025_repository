@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3230957894333692084}
   - component: {fileID: 1806208056987658463}
   - component: {fileID: 2341513003647156446}
+  - component: {fileID: 172034084643406771}
+  - component: {fileID: 1026323989034231535}
   m_Layer: 0
   m_Name: BuffHealUp
   m_TagString: Untagged
@@ -173,3 +175,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffType: 4
+--- !u!114 &172034084643406771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248889865444125261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477e222a26304a64f96d739e830bdb71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startFlickerTime: 3.5
+  flickerInterval: 0.2
+  deadTime: 7
+--- !u!114 &1026323989034231535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248889865444125261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3d2729a8ce7ec4b92fd70e89de97fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounds: {fileID: 0}
+  margin: 0

@@ -204,6 +204,22 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("DropItem"))
         {
+            int scoreValue = other.gameObject.GetComponent<ScoreOnDestroy>().scoreValue;
+            switch (scoreValue)
+            {
+                case 50:
+                    AudioManager.Instance.PlaySFX(2);
+                    break;
+                case 100:
+                    AudioManager.Instance.PlaySFX(1);
+                    break;
+                case 150:
+                    AudioManager.Instance.PlaySFX(0);
+                    break;
+                default:
+                    AudioManager.Instance.PlaySFX(2);
+                    break;
+            }
             Destroy(other.gameObject,0.1f);
         }
     }
