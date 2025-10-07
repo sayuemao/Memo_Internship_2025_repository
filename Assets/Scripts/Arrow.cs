@@ -88,6 +88,8 @@ public class Arrow : MonoBehaviour
                 boxCollider2d.enabled = false;
 
                 platform.layer = LayerMask.NameToLayer("ArrowPlatform");
+
+                AudioManager.Instance.PlaySFX(9);
             }
         }
     }

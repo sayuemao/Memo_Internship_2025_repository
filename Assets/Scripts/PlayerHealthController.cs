@@ -87,6 +87,8 @@ public class PlayerHealthController : MonoBehaviour
 
             PlayerController.Instance.KnockBack();
 
+            AudioManager.Instance.PlaySFX(8);
+
             if (playerCurrentHealth <= 0)
             {
                 PlayerDie();
@@ -102,6 +104,8 @@ public class PlayerHealthController : MonoBehaviour
         capsuleCollider2dTrigger.enabled = false;
         this.GetComponent<WrapObject>().enabled = false;
         Destroy(this.gameObject, 5f);
+
+        AudioManager.Instance.PlaySFX(7);
 
         GameManager.Instance.PlayerDie();
     }

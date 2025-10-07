@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4478725926672003471}
   - component: {fileID: 285038548658170779}
   - component: {fileID: 6455972962862804183}
+  - component: {fileID: 2814823415856956577}
   m_Layer: 0
   m_Name: Gem
   m_TagString: DropItem
@@ -211,3 +212,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounds: {fileID: 0}
   margin: 0
+--- !u!114 &2814823415856956577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022196987251897334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477e222a26304a64f96d739e830bdb71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startFlickerTime: 3.5
+  flickerInterval: 0.5
+  deadTime: 11

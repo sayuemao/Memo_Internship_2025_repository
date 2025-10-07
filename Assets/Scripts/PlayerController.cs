@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingForce);
-            //AudioManager.Instance.PlaySFX(10);                
+            AudioManager.Instance.PlaySFX(3);                
         }
 
     }
@@ -141,6 +141,7 @@ public class PlayerController : MonoBehaviour
         {
             isAttack = true;
             anim.SetTrigger("Attack");
+            AudioManager.Instance.PlaySFX(4);
         }
     }
 

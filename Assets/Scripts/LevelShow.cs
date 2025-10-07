@@ -23,6 +23,11 @@ public class LevelShow : MonoBehaviour
         {
             levelButton.GetComponent<Button>().onClick.AddListener(OnLevelButtonClicked);
         }
+        
+    }
+
+    private void Update()
+    {
         if (PlayerPrefs.HasKey(levelName + "_unlocked") && PlayerPrefs.GetInt(levelName + "_unlocked") == 1)
         {
             levelButton.SetActive(true);
@@ -34,7 +39,7 @@ public class LevelShow : MonoBehaviour
             lockButtonNumberImage.enabled = true;
         }
 
-        if(PlayerPrefs.HasKey(levelName + "_win") && PlayerPrefs.GetInt(levelName + "_win") == 1)
+        if (PlayerPrefs.HasKey(levelName + "_win") && PlayerPrefs.GetInt(levelName + "_win") == 1)
         {
             if (PlayerPrefs.HasKey(nextLevelName + "_unlocked"))
             {
@@ -49,7 +54,6 @@ public class LevelShow : MonoBehaviour
             }
         }
     }
-
     private void OnDestroy()
     {
         if(levelButton!=null)

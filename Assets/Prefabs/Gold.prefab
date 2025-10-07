@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4054931293208579060}
   - component: {fileID: 3783801456816456462}
   - component: {fileID: 5904125468644904020}
+  - component: {fileID: -1132268450885773086}
   m_Layer: 0
   m_Name: Gold
   m_TagString: DropItem
@@ -211,3 +212,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounds: {fileID: 0}
   margin: 0
+--- !u!114 &-1132268450885773086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409450225655333957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477e222a26304a64f96d739e830bdb71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startFlickerTime: 3.5
+  flickerInterval: 0.5
+  deadTime: 11

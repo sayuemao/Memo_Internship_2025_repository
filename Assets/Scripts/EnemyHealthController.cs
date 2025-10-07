@@ -49,6 +49,7 @@ public class EnemyHealthController : MonoBehaviour
                 GameManager.Instance.AddScore(this.GetComponent<IDropItem>().ScoreValue);
                 DieStep();
             }
+            AudioManager.Instance.PlaySFX(5);
         }
     }
 
