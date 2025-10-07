@@ -127,11 +127,11 @@ public class PlayerController : MonoBehaviour
 
         if (knockBackCounter <= 0)
         {
-            if (rb.velocity.x < 0)
+            if (rb.velocity.x < -0.05f)
             {
                 spriteRenderer.flipX = false;
             }
-            else if (rb.velocity.x > 0)
+            else if (rb.velocity.x > 0.05f)
             {
                 spriteRenderer.flipX = true;
             }
