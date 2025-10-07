@@ -12,6 +12,8 @@ public class PlayerHealthController : MonoBehaviour
     public float invincibleLength;
     private float invincibleCounter;
     
+    public bool isBuffInvincible = false;
+
     public CapsuleCollider2D  capsuleCollider2d;
     public CapsuleCollider2D capsuleCollider2dTrigger;
     public BoxCollider2D BoxCollider2D;
@@ -74,7 +76,7 @@ public class PlayerHealthController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (invincibleCounter <= 0)
+        if (invincibleCounter <= 0 && !isBuffInvincible)
         {
             invincibleCounter = invincibleLength;
 

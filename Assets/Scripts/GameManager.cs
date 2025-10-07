@@ -129,4 +129,9 @@ public class GameManager : MonoBehaviour
         currentScore += scoreValue;
         gameUIPanel.UpdateScoreDisplay(currentScore);
     }
+
+    public void UpdateBuff(Sprite updateSprite)//¸üÐÂUI
+    {
+        gameUIPanel.UpdateBuffDisplay(updateSprite);
+    }
 }

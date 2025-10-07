@@ -88,4 +88,9 @@ public class GameUIPanel : MonoBehaviour
         levelScore.text += GameManager.Instance.currentScore.ToString();
         totalScore.text += PlayerPrefs.GetInt("totalscore").ToString();
     }
+
+    public void UpdateBuffDisplay(Sprite updateBuff)
+    {
+        Buff.sprite = updateBuff;
+    }
 }

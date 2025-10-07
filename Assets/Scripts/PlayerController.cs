@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     public float knockBackForceHorizontal,knockBackForceVertical, knockBackLength;
     private float knockBackCounter;
 
+    public bool canFly = false;
+    public float flyUpSpeed = 0.5f;
 
     public bool stopInput;
 
@@ -65,14 +67,25 @@ public class PlayerController : MonoBehaviour
                 //boxCollider2D.excludeLayers &= ~ PlayerHealthController.Instance.groundlayer.value;
             }
         }
+
         if (/*!PauseMenu.Instance.isPaused &&*/ !stopInput)
         {
             HandleMove();
 
             if (knockBackCounter <= 0)
-            {
-                HandleJump();
+            {               
                 HandleAttack();
+                if (!canFly)
+                {
+                    HandleJump();
+                }
+                else
+                {
+                    if (Input.GetKey(KeyCode.W))
+                    {
+                        rb.velocity = new Vector2(rb.velocity.x, flyUpSpeed);
+                    }
+                }
             }
             else
             {
@@ -168,6 +181,7 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("velocityY", rb.velocity.y);
         anim.SetFloat("velocityXabs", Mathf.Abs(rb.velocity.x));
+        anim.SetBool("isFly", canFly);
     }
 
     public void KnockBack()
