@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy3 : MonoBehaviour
 {
+    public float jumpForce = 3f;
+    public float jumpInterval = 7f;
+    private float jumpTimer = 0f;
+    private bool isGrounded = false;
+
+    public bool isJumping = false;
+
     public float moveSpeed;
     public bool isMovingRight = false;
 
@@ -13,16 +20,18 @@ public class Enemy : MonoBehaviour
     private GameObject leftWallCheckPoint;
     private GameObject rightWallCheckPoint;
 
+    public GameObject groundCheckPoint;
+
     private Rigidbody2D RB;
     private SpriteRenderer SR;
-
+    private Animator anim;
     public LayerMask groundLayer;
 
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
         SR = GetComponent<SpriteRenderer>();
-
+        anim = GetComponent<Animator>();
         leftGroundCheckPoint = transform.GetChild(0).gameObject;
         rightGroundCheckPoint = transform.GetChild(1).gameObject;
 
@@ -30,20 +39,50 @@ public class Enemy : MonoBehaviour
         rightWallCheckPoint = transform.GetChild(3).gameObject;
     }
 
-    
-    public virtual void Update()
+
+    void Update()
     {
-        CheckEdge();
-        RB.velocity = new Vector2(isMovingRight ? moveSpeed : -moveSpeed, RB.velocity.y);
-        if (isMovingRight)
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.transform.position, 0.2f, groundLayer);
+        if (isGrounded && !isJumping)
         {
-            SR.flipX = true;
+            isJumping = false;
+            CheckEdge();
+            RB.velocity = new Vector2(isMovingRight ? moveSpeed : -moveSpeed, RB.velocity.y);
+            if (isMovingRight)
+            {
+                SR.flipX = true;
+            }
+            else
+            {
+                SR.flipX = false;
+            }
+
+            jumpTimer -= Time.deltaTime;
+            if (jumpTimer <= 0f)
+            {
+                RB.velocity = new Vector2(RB.velocity.x, jumpForce);
+                isJumping = true;
+                jumpTimer = jumpInterval;
+            }
         }
         else
         {
-            SR.flipX = false;
+            if(Mathf.Abs(RB.velocity.y) < 0.1f)
+            {
+                isJumping = false;
+            }
+            //if (RB.velocity.x>0)
+            //{
+            //    SR.flipX = true;
+            //}
+            //else
+            //{
+            //    SR.flipX = false;
+            //}
         }
-       
+
+        anim.SetBool("isJumping", isJumping);
+
     }
 
     private void CheckEdge()
@@ -54,7 +93,8 @@ public class Enemy : MonoBehaviour
         Collider2D rightWallCollider = Physics2D.OverlapCircle(rightWallCheckPoint.transform.position, 0.2f, groundLayer);
 
         // 两侧都无地（腾空/掉落中）时不翻转，避免抖动
-        if (!leftGroundCollider && !rightGroundCollider) return;
+        //if (!leftGroundCollider && !rightGroundCollider) return;
+        //if(leftWallCheckPoint && rightWallCheckPoint) return;
 
         if (isMovingRight)
         {
@@ -74,7 +114,4 @@ public class Enemy : MonoBehaviour
         }
 
     }
-
-    
-
 }

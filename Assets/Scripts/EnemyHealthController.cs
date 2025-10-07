@@ -68,6 +68,7 @@ public class EnemyHealthController : MonoBehaviour
         this.GetComponent<WrapObject>().enabled = false;
         if(this.GetComponent<Enemy>()) this.GetComponent<Enemy>().enabled = false;
         else if(this.GetComponent<Enemy2>()) this.GetComponent<Enemy2>().enabled = false;
+        else if(this.GetComponent<Enemy3>()) this.GetComponent<Enemy3>().enabled = false;
     }
 
     public void DieFinal()
