@@ -64,4 +64,9 @@ public class GameUIPanel : MonoBehaviour
             pauseButtonImage.sprite = pauseButton1; // ²»Í¸Ã÷
         }
     }
+
+    public void UpdateScoreDisplay(int currentScore)
+    {
+        score.text = currentScore.ToString();
+    }
 }

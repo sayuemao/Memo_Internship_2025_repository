@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy2 : MonoBehaviour
+public class Enemy2 : MonoBehaviour,IDropItem,IEnemyController
 {
     public float moveSpeed;
     public bool isMovingRight ;
@@ -17,6 +17,8 @@ public class Enemy2 : MonoBehaviour
     private SpriteRenderer SR;
 
     public LayerMask groundLayer;
+
+    public GameObject[] dropItemOnDestroy;
 
     void Start()
     {
@@ -73,5 +75,39 @@ public class Enemy2 : MonoBehaviour
             }
         }
 
+    }
+
+
+    public void DropItem(Transform dropPosition)//权重掉落
+    {
+        if (dropItemOnDestroy == null || dropItemOnDestroy.Length == 0) return;
+
+        int n = dropItemOnDestroy.Length;
+
+        int totalWeight = 0;
+        for (int i = 0; i < n; i++)
+        {
+            totalWeight += (n - i);
+        }
+
+        int roll = Random.Range(0, totalWeight); // 上限不含
+        int cumulative = 0;
+        int chosenIndex = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            cumulative += (n - i);
+            if (roll <= cumulative)
+            {
+                chosenIndex = i;
+                break;
+            }
+        }
+
+        var prefab = dropItemOnDestroy[chosenIndex];
+        if (prefab != null)
+        {
+            Instantiate(prefab, dropPosition.position, dropPosition.rotation);
+        }
     }
 }

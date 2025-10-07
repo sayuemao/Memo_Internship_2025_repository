@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy3 : MonoBehaviour
+public class Enemy3 : MonoBehaviour, IDropItem, IEnemyController
 {
     public float jumpForce = 3f;
     public float jumpInterval = 7f;
@@ -31,6 +31,7 @@ public class Enemy3 : MonoBehaviour
     public float turnCooldown = 1f;        // 换向冷却，避免抖动
     private float turnCooldownTimer = 0f;
 
+    public GameObject[] dropItemOnDestroy;
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
@@ -128,5 +129,38 @@ public class Enemy3 : MonoBehaviour
             }
         }
 
+    }
+
+    public void DropItem(Transform dropPosition)//权重掉落
+    {
+        if (dropItemOnDestroy == null || dropItemOnDestroy.Length == 0) return;
+
+        int n = dropItemOnDestroy.Length;
+
+        int totalWeight = 0;
+        for (int i = 0; i < n; i++)
+        {
+            totalWeight += (n - i);
+        }
+
+        int roll = Random.Range(0, totalWeight); // 上限不含
+        int cumulative = 0;
+        int chosenIndex = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            cumulative += (n - i);
+            if (roll <= cumulative)
+            {
+                chosenIndex = i;
+                break;
+            }
+        }
+
+        var prefab = dropItemOnDestroy[chosenIndex];
+        if (prefab != null)
+        {
+            Instantiate(prefab, dropPosition.position, dropPosition.rotation);
+        }
     }
 }

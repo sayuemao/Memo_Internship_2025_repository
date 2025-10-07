@@ -45,6 +45,7 @@ public class EnemyHealthController : MonoBehaviour
             Destroy(other.transform.parent.gameObject);
             if(enemyCurrentHealth<=0)
             {
+                this.GetComponent<IDropItem>()?.DropItem(transform);
                 DieStep();
             }
         }
@@ -66,9 +67,12 @@ public class EnemyHealthController : MonoBehaviour
         //rb.bodyType = RigidbodyType2D.Kinematic;
         rb.gravityScale = 2.5f;
         this.GetComponent<WrapObject>().enabled = false;
-        if(this.GetComponent<Enemy>()) this.GetComponent<Enemy>().enabled = false;
-        else if(this.GetComponent<Enemy2>()) this.GetComponent<Enemy2>().enabled = false;
-        else if(this.GetComponent<Enemy3>()) this.GetComponent<Enemy3>().enabled = false;
+
+        //if(this.GetComponent<Enemy>()) this.GetComponent<Enemy>().enabled = false;
+        //else if(this.GetComponent<Enemy2>()) this.GetComponent<Enemy2>().enabled = false;
+        //else if(this.GetComponent<Enemy3>()) this.GetComponent<Enemy3>().enabled = false;
+
+        if(this.GetComponent<IEnemyController>() is Behaviour b) b.enabled = false;
     }
 
     public void DieFinal()

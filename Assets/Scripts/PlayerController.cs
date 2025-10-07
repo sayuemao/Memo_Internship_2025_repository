@@ -185,5 +185,11 @@ public class PlayerController : MonoBehaviour
         anim.SetTrigger("Hurt");
     }
 
-
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("DropItem"))
+        {
+            Destroy(other.gameObject,0.5f);
+        }
+    }
 }

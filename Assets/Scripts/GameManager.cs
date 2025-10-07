@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public string nextLevelName;
 
+    public int currentScore = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -32,8 +34,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameUIPanel = FindAnyObjectByType<GameUIPanel>();
-        enemycount += FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
-        enemycount += FindObjectsByType<Enemy2>(FindObjectsSortMode.None).Length;
+        enemycount += FindObjectsByType<IEnemyController>(FindObjectsSortMode.None).Length;
+        
     }
 
     // Update is called once per frame
@@ -109,5 +111,11 @@ public class GameManager : MonoBehaviour
         isGamePaused = true;
         winPanel.SetActive(true);
         PlayerController.Instance.stopInput = true;
+    }
+
+    public void AddScore(int scoreValue)
+    {
+        currentScore += scoreValue;
+        gameUIPanel.UpdateScoreDisplay(currentScore);
     }
 }

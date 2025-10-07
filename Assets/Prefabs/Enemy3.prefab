@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 6419089853414368610}
   - component: {fileID: 3182364733661511513}
   - component: {fileID: 1460910301365855074}
+  - component: {fileID: 476350505064686772}
   m_Layer: 9
   m_Name: Enemy3
   m_TagString: Untagged
@@ -72,7 +73,7 @@ Transform:
   - {fileID: 6699464907443559869}
   - {fileID: 3184062380763695338}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7131897473472915289
 SpriteRenderer:
@@ -265,6 +266,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1088
   turnCooldown: 1
+  dropItemOnDestroy:
+  - {fileID: 5127807452059980953, guid: cfc01ea23a3ad0d4f988fa6f1dc15375, type: 3}
+  - {fileID: 5409450225655333957, guid: 0a85d9159a71da845848b84f2fe627ea, type: 3}
+  - {fileID: 2022196987251897334, guid: 48a9e4daa8cd3ec4f929cfd9f823ebe0, type: 3}
+--- !u!114 &476350505064686772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961844498153026400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 182fb9866616cbb4fba8cee6d75913dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 100
 --- !u!1 &5203116461122143795
 GameObject:
   m_ObjectHideFlags: 0

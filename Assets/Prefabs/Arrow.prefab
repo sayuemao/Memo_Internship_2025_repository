@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2193431637572150435}
   - component: {fileID: 4030939236587139236}
   - component: {fileID: 1436109107332292076}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 6187857519889871436}
   - component: {fileID: 5182621331514420289}
   - component: {fileID: 4668545694716381013}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5023643841600673682}
   - component: {fileID: 4535867621806956977}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7225828949266204664}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: detectPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
