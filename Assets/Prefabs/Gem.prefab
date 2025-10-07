@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4090798332544622747}
   - component: {fileID: 4478725926672003471}
   - component: {fileID: 285038548658170779}
+  - component: {fileID: 6455972962862804183}
   m_Layer: 0
   m_Name: Gem
   m_TagString: DropItem
@@ -34,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3987251796190013393
 SpriteRenderer:
@@ -160,7 +161,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4478725926672003471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,3 +197,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6455972962862804183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022196987251897334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3d2729a8ce7ec4b92fd70e89de97fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounds: {fileID: 0}
+  margin: 0

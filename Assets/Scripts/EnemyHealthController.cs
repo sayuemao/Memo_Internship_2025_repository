@@ -38,7 +38,7 @@ public class EnemyHealthController : MonoBehaviour
             PlayerHealthController.Instance.TakeDamage(enemyDamage);
 
         }
-        else if(other.transform.parent!=null && other.transform.parent.gameObject.GetComponent<Arrow>()!=null)
+        else if(other.transform.parent!=null && other.transform.parent.gameObject.GetComponent<Arrow>()!=null && !other.transform.parent.GetChild(0).gameObject.activeSelf)
         {
             enemyCurrentHealth -= other.transform.parent.gameObject.GetComponent<Arrow>().arrowDamage;
             dir = Mathf.Sign(other.transform.parent.GetComponent<Rigidbody2D>().velocity.x);
@@ -46,6 +46,7 @@ public class EnemyHealthController : MonoBehaviour
             if(enemyCurrentHealth<=0)
             {
                 this.GetComponent<IDropItem>()?.DropItem(transform);
+                GameManager.Instance.AddScore(this.GetComponent<IDropItem>().ScoreValue);
                 DieStep();
             }
         }

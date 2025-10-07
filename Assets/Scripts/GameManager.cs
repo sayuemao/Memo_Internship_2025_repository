@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameUIPanel = FindAnyObjectByType<GameUIPanel>();
-        enemycount += FindObjectsByType<IEnemyController>(FindObjectsSortMode.None).Length;
+        enemycount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         
     }
 

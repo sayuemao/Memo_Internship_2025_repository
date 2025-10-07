@@ -20,6 +20,8 @@ public class Enemy2 : MonoBehaviour,IDropItem,IEnemyController
 
     public GameObject[] dropItemOnDestroy;
 
+    public int ScoreValue { get { return scoreValue; } set { scoreValue = value; } }
+    public int scoreValue;
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();

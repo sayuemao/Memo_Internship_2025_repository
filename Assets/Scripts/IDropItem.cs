@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IDropItem
 {
+    public int ScoreValue { get; set; }
     public void DropItem(Transform dropPosition);
 }

@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("DropItem"))
         {
-            Destroy(other.gameObject,0.5f);
+            Destroy(other.gameObject,0.1f);
         }
     }
 }
