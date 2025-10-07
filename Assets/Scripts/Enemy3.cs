@@ -6,6 +6,7 @@ public class Enemy3 : MonoBehaviour
 {
     public float jumpForce = 3f;
     public float jumpInterval = 7f;
+    private float jumpCooldown = 0f;
     private float jumpTimer = 0f;
     private bool isGrounded = false;
 
@@ -27,6 +28,9 @@ public class Enemy3 : MonoBehaviour
     private Animator anim;
     public LayerMask groundLayer;
 
+    public float turnCooldown = 1f;        // 换向冷却，避免抖动
+    private float turnCooldownTimer = 0f;
+
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
@@ -37,6 +41,8 @@ public class Enemy3 : MonoBehaviour
 
         leftWallCheckPoint = transform.GetChild(2).gameObject;
         rightWallCheckPoint = transform.GetChild(3).gameObject;
+
+        jumpCooldown = jumpInterval;
     }
 
 
@@ -45,6 +51,10 @@ public class Enemy3 : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.transform.position, 0.2f, groundLayer);
         if (isGrounded && !isJumping)
         {
+            if (turnCooldownTimer > 0f)
+            {
+                turnCooldownTimer -= Time.deltaTime;
+            }
             isJumping = false;
             CheckEdge();
             RB.velocity = new Vector2(isMovingRight ? moveSpeed : -moveSpeed, RB.velocity.y);
@@ -62,6 +72,7 @@ public class Enemy3 : MonoBehaviour
             {
                 RB.velocity = new Vector2(RB.velocity.x, jumpForce);
                 isJumping = true;
+                jumpInterval = Random.Range(0f, jumpCooldown);
                 jumpTimer = jumpInterval;
             }
         }
@@ -87,13 +98,15 @@ public class Enemy3 : MonoBehaviour
 
     private void CheckEdge()
     {
-        Collider2D leftGroundCollider = Physics2D.OverlapCircle(leftGroundCheckPoint.transform.position, 0.2f, groundLayer);
-        Collider2D rightGroundCollider = Physics2D.OverlapCircle(rightGroundCheckPoint.transform.position, 0.2f, groundLayer);
-        Collider2D leftWallCollider = Physics2D.OverlapCircle(leftWallCheckPoint.transform.position, 0.2f, groundLayer);
-        Collider2D rightWallCollider = Physics2D.OverlapCircle(rightWallCheckPoint.transform.position, 0.2f, groundLayer);
+        if(turnCooldownTimer > 0f) return;
+
+        Collider2D leftGroundCollider = Physics2D.OverlapCircle(leftGroundCheckPoint.transform.position, 0.05f, groundLayer);
+        Collider2D rightGroundCollider = Physics2D.OverlapCircle(rightGroundCheckPoint.transform.position, 0.05f, groundLayer);
+        Collider2D leftWallCollider = Physics2D.OverlapCircle(leftWallCheckPoint.transform.position, 0.05f, groundLayer);
+        Collider2D rightWallCollider = Physics2D.OverlapCircle(rightWallCheckPoint.transform.position, 0.05f, groundLayer);
 
         // 两侧都无地（腾空/掉落中）时不翻转，避免抖动
-        //if (!leftGroundCollider && !rightGroundCollider) return;
+        if (!leftGroundCollider && !rightGroundCollider) return;
         //if(leftWallCheckPoint && rightWallCheckPoint) return;
 
         if (isMovingRight)
@@ -102,6 +115,7 @@ public class Enemy3 : MonoBehaviour
             if (rightWallCollider || !rightGroundCollider)
             {
                 isMovingRight = false;
+                turnCooldownTimer = turnCooldown;
             }
         }
         else
@@ -110,6 +124,7 @@ public class Enemy3 : MonoBehaviour
             if (leftWallCollider || !leftGroundCollider)
             {
                 isMovingRight = true;
+                turnCooldownTimer = turnCooldown;
             }
         }
 

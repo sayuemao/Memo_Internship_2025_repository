@@ -255,15 +255,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08ff3c2324ede34d890593d56622244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 7
+  jumpForce: 8
   jumpInterval: 3
   isJumping: 0
   moveSpeed: 1.5
-  isMovingRight: 0
+  isMovingRight: 1
   groundCheckPoint: {fileID: 8976749782866873430}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1088
+  turnCooldown: 1
 --- !u!1 &5203116461122143795
 GameObject:
   m_ObjectHideFlags: 0

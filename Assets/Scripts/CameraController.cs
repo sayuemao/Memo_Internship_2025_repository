@@ -22,6 +22,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        farBackground.position = new Vector3(transform.position.x,transform.position.y,0f);
         lastPos = transform.position;
     }
 

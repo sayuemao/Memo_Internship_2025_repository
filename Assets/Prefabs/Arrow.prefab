@@ -179,7 +179,7 @@ MonoBehaviour:
   detectPoint: {fileID: 8978035480824875533}
   detectLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
   stayTime: 7
   startFlickerTime: 3.5
   flickerInterval: 0.5
