@@ -11,26 +11,26 @@ public class LevelShow : MonoBehaviour
 
     //public Sprite buttonNumberImage;
 
-    private Image lockButtonNumberImage;
+    public Image lockButtonNumberImage;
 
-    private Button levelButton;
+    public GameObject levelButton;
     // Start is called before the first frame update
     void Start()
     {
-        levelButton = GetComponentInChildren<Button>();
-        lockButtonNumberImage = transform.GetChild(0).GetComponent<Image>();
+        //levelButton = transform.GetChild(1).GetComponent<Button>();
+        //lockButtonNumberImage = transform.GetChild(0).GetComponent<Image>();
         if (levelButton!=null)
         {
-            levelButton.onClick.AddListener(OnLevelButtonClicked);
+            levelButton.GetComponent<Button>().onClick.AddListener(OnLevelButtonClicked);
         }
         if (PlayerPrefs.HasKey(levelName + "_unlocked") && PlayerPrefs.GetInt(levelName + "_unlocked") == 1)
         {
-            levelButton.enabled = true;
+            levelButton.SetActive(true);
             lockButtonNumberImage.enabled = false;
         }
         else
         {
-            levelButton.enabled = false;
+            levelButton.SetActive(false);
             lockButtonNumberImage.enabled = true;
         }
 
@@ -54,14 +54,14 @@ public class LevelShow : MonoBehaviour
     {
         if(levelButton!=null)
         {
-            levelButton.onClick.RemoveAllListeners();
+            levelButton.GetComponent<Button>().onClick.RemoveAllListeners();
         }
     }
 
     private void OnLevelButtonClicked()
     {
         // 仅在关卡已解锁时加载
-        if (levelButton != null && levelButton.IsActive() && !string.IsNullOrEmpty(levelName))
+        if (levelButton != null && levelButton.activeSelf && !string.IsNullOrEmpty(levelName))
         {
             SceneManager.LoadScene(levelName);
         }

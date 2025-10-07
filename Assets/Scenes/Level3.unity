@@ -2645,6 +2645,10 @@ PrefabInstance:
       propertyPath: gameUIPanel
       value: 
       objectReference: {fileID: 331386721}
+    - target: {fileID: 9005553553796824646, guid: 7accff45d0f4722489d809d9b15209fe, type: 3}
+      propertyPath: backSceneName
+      value: LevelSelect
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

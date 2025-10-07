@@ -113,6 +113,15 @@ public class GameManager : MonoBehaviour
         PlayerController.Instance.stopInput = true;
         PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_win", 1);
         PlayerPrefs.SetInt(nextLevelName + "_unlocked", 1);
+        if(PlayerPrefs.HasKey("totalscore"))
+        {
+            PlayerPrefs.SetInt("totalscore", PlayerPrefs.GetInt("totalscore") + currentScore);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("totalscore", currentScore);
+        }
+        gameUIPanel.UpdateEndScoreDisplay();
     }
 
     public void AddScore(int scoreValue)

@@ -17,6 +17,13 @@ public class GameUIPanel : MonoBehaviour
 
     public Sprite pauseButton1, pauseButton2;
 
+    public GameObject winPanel;
+
+    //public GameObject losePanel;
+
+    public Text levelScore;
+
+    public Text totalScore;
     void Start()
     {
         
@@ -29,6 +36,12 @@ public class GameUIPanel : MonoBehaviour
         {
             GameManager.Instance.PauseGame();
         }
+
+        if(GameManager.Instance.isGamePaused && winPanel.activeSelf && Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.Instance.NextLevel();
+        }
+
     }
 
     public void UpdateHealthDisplay(int currentHealth)
@@ -68,5 +81,11 @@ public class GameUIPanel : MonoBehaviour
     public void UpdateScoreDisplay(int currentScore)
     {
         score.text = currentScore.ToString();
+    }
+
+    public void UpdateEndScoreDisplay()
+    {
+        levelScore.text += GameManager.Instance.currentScore.ToString();
+        totalScore.text += PlayerPrefs.GetInt("totalscore").ToString();
     }
 }

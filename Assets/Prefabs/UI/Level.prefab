@@ -93,6 +93,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: 
   nextLevelName: 
+  lockButtonNumberImage: {fileID: 8023165914657858717}
+  levelButton: {fileID: 9104895069756992485}
 --- !u!1 &5775442323084143912
 GameObject:
   m_ObjectHideFlags: 0
