@@ -111,6 +111,8 @@ public class GameManager : MonoBehaviour
         isGamePaused = true;
         winPanel.SetActive(true);
         PlayerController.Instance.stopInput = true;
+        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_win", 1);
+        PlayerPrefs.SetInt(nextLevelName + "_unlocked", 1);
     }
 
     public void AddScore(int scoreValue)
